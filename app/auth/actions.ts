@@ -12,9 +12,6 @@ export async function signUp(formData: FormData) {
   console.log('SIGN UP ACTION HIT')
   const supabase = await createClient()
 
-
-
-
   // type-casting here for convenience
   // in practice, you should validate your inputs
   const credentials = {

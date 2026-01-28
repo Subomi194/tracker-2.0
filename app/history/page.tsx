@@ -1,8 +1,48 @@
 import React from 'react'
+import Header from '@/components/ui/Header'
+import {createClient} from '@/lib/supabase/server'
+import RoutineHistory from '@/components/RoutineHistory'
+import { RoutineComponent } from '@/types/routine'
 
-const page = () => {
+
+
+const page = async () => {
+
+  const supabase = await createClient()
+
+  console.log('HISTORY ADD ACTION HIT')
+
+    const {data: routines, error} = await supabase
+      .from("routines")
+      .select(`
+        id,
+        date,
+        notes,
+        products,
+        routine_routine_types (
+          routine_types (
+            id,
+            name
+          )
+        )
+      `)
+      .order("date", {ascending: false})
+      .returns<RoutineComponent[]>()
+
+      if (error) {
+        console.error("Error fetching routines", error);
+      }
+
+       
   return (
-    <div>page</div>
+    <div>
+      <Header 
+        title='History' 
+        description='Fill in the details of your new routine'
+      />
+
+      <RoutineHistory routines={routines ?? []}/>
+    </div>
   )
 }
 

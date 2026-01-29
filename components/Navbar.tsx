@@ -7,17 +7,21 @@ import Logo from './ui/Logo'
 const Navbar = () => {
   
   return (
-    <header className='w-full bg-red-300'>
-      <nav className='max-w-360 mx-auto flex justify-between items-center px-6 py-4'>
-        <Link href="/" className='flex justify-center items-center'>
-          <Logo/>
-        </Link>
+    <header className='w-full bg-white/80 backdrop-blur shadow-lg fixed'>
+      <nav className='max-w-360 mx-auto flex justify-between items-center px-6 py-4 h-16'>
 
-        <CustomButton
-          title="Sign In"
-          btnType="button"
-          containerStyles="bg-pink-400 rounded-full text-white min-w-[130px]"
-        />
+        <div className='flex justify-center items-center -space-x-4 '>
+
+
+          <Link href="/">
+            <Logo/>
+          </Link>
+        </div>
+        
+
+        
+
+        
 
       </nav>
 

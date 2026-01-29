@@ -24,6 +24,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+ 
   return (
     <html lang="en">
       <body
@@ -32,9 +34,13 @@ export default function RootLayout({
         <div className={`flex`}>
           <Sidebar/>
 
-          <div className={`flex flex-col flex-1`}>
+          <div className={`flex flex-col flex-1 `}>
             <Navbar/>
-            {children}
+            <main className={`flex-1 pt-18 px-6 py-8`}>
+              <div className="max-w-6xl mx-auto">
+              {children}
+              </div>
+            </main>
           </div>
         </div>
       </body>

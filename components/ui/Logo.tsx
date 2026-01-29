@@ -2,7 +2,9 @@ import React from 'react'
 
 const Logo = () => {
   return (
-    <div>Logo</div>
+    <div>
+      <h1 className='font-bold ml-4 '>Hair Routine Tracker</h1>
+    </div>
   )
 }
 

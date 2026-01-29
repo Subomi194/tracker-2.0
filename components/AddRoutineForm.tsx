@@ -32,10 +32,11 @@ const AddRoutineForm = ({routineTypes}: {routineTypes: RoutineType[]}) => {
         <form action={addRoutine} className=''>
         
             <div className='p-6'>
-              <div className='border p-6 rounded-lg'>
-                <h3>Routine Details</h3>
+              <div className='border p-6 rounded-lg bg-white shadow-xl'>
+                <h3 className='font-bold'>Routine Details</h3>
+                <h4 className=' text-gray-500'>Fill in the details of your hair routine</h4>
                 
-                <p>Routine Types</p>
+                <p className='text-base font-semibold mb-1'>Routine Types</p>
 
                 <input type="hidden" name='routine_type_ids' value={JSON.stringify(selectedTypes)}  />
     
@@ -51,7 +52,7 @@ const AddRoutineForm = ({routineTypes}: {routineTypes: RoutineType[]}) => {
     
                 <AddProducts/>
 
-                <AddTextarea label='Notes' name='notes' placeholder='How was your routine?' rows= {4} customStyles=''/>
+                <AddTextarea label='Notes' name='notes' placeholder='How did your hair feel? Any observations?' rows= {2} customStyles=''/>
     
                 <CustomButton title='Add Routine' btnType="submit" containerStyles='bg-black text-white rounded-2xl mt-10 w-full'/>
               </div>

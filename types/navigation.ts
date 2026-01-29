@@ -1,7 +1,10 @@
+import { IconType } from "react-icons";
+
 export type SidebarItemProps = {
     title: string;
     path: string;
-    icon?: string;
+    icon: IconType;
+    expanded?: boolean;
     
 
 }

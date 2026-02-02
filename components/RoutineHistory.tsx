@@ -2,35 +2,32 @@
 "use client"
 
 import { RoutineComponent } from "@/types/routine"
+import formatDate from "@/lib/utils/formatDate"
 
 const RoutineHistory = ({routines}: {routines: RoutineComponent[]}) => {
     
 
 
+
   return (
     <div className="p-6">
 
-        {routines.length === 0 ? (
+        {routines.length === 0 && (
             <div className='text-center py-20'>
                 <h2 className='text-2xl font-bold'>No routines added yet</h2>
                 <p className='text-gray-500 mt-2'>Add your first routine to get started</p>
             </div>
-        ) : (
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10'>
-
-            </div>
         )}
-        
+
+        <div className='grid grid-cols-1'>
+
         {routines?.map((routine) => {
-
-
-                console.log(routine.products)
   
             return (
-            <div key={routine.id} className='rounded-4xl mb-8 bg-rose-100/50 p-2'>
+            <div key={routine.id} className='rounded-4xl mb-4 bg-rose-100/50 p-2'>
                 <div className="rounded-[1.75rem] bg-white shadow-sm p-2">
-                    <div className="rounded-3xl hover:border-2 hover:border-rose-400/70 p-6 space-y-4 ">
+                    <div className="rounded-3xl hover:border-2 hover:border-rose-400/70 md:p-6 p-4 space-y-2 ">
 
                         {/* Routine types */}
                         <div className="flex flex-wrap gap-2" >
@@ -48,7 +45,7 @@ const RoutineHistory = ({routines}: {routines: RoutineComponent[]}) => {
                         {/* Date */}
                         <div className='flex justify-between'>
                             <div>
-                                <p>{new Date(routine.date).toLocaleDateString()}</p>
+                                <p>{formatDate(routine.date)}</p>
                             </div>
                         </div>
 
@@ -84,6 +81,7 @@ const RoutineHistory = ({routines}: {routines: RoutineComponent[]}) => {
             </div> 
             )
         })}
+        </div>
         
           
     </div>

@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Sidebar from "@/components/Sidebar";
+import { SidebarProvider } from "@/context/SidebarContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
   subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfair = Playfair_Display({
   subsets: ["latin"],
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -29,20 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${dmSans.variable} ${playfair.variable} antialiased`}
       >
-        <div className={`flex`}>
-          <Sidebar/>
-
-          <div className={`flex flex-col flex-1 `}>
-            <Navbar/>
-            <main className={`flex-1 pt-18 px-6 py-8`}>
-              <div className="max-w-6xl mx-auto">
-              {children}
-              </div>
-            </main>
-          </div>
-        </div>
+        <SidebarProvider>
+             {children}
+        </SidebarProvider>
       </body>
     </html>
   );

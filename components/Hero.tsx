@@ -3,23 +3,26 @@
 import React from 'react';
 import Image from 'next/image';
 import CustomButton from './ui/CustomButton';
+import { userProps } from '@/types/user'
 
-const Hero = () => {
+const Hero = ({name, email}: userProps) => {
   return (
-    <div className="mx-auto max-w-360 relative z-0 flex flex-col gap-5 xl:flex-row">
-        <div className="flex-1 pt-36 padding-x">
+    <div className="mx-auto max-w-360 ">
+        <div className=" pt-32 ">
             <h1 className="text-3xl font-semibold ">
-                Hi Subby
+                Hi <span>{name ?? "User"}</span>
             </h1>
 
-            <p>
+            <p >
                 Welcome to your hair routine tracker
             </p>
 
+            <p className='mb-6'>Ready to track your hair care journey?</p>
+
             <CustomButton 
                 title="Add Routine"
-                containerStyles="bg-pink-400 text-white rounded-full mt-10"
-                
+                href='/add'
+                containerStyles=""
             />       
         </div>
     </div>

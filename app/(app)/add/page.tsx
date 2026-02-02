@@ -18,12 +18,13 @@ const page = async () => {
     
 
   return (
-    <div className='max-w-360 mx-auto '>
+    <div className='max-w-360 mx-auto'>
+      <div className='md:px-40'>
       <Header 
         title='Add Routine Entry' 
         description='Log your wash day, new hairstyle, or treatment'
       />
-
+      </div>
       <AddRoutineForm routineTypes={routineTypes ?? []}/> {/*if routinetypes is null or undefined, bring nothing else bring reoutineType*/}
     </div>
   )

@@ -27,16 +27,17 @@ const AddProducts = () => {
     <div className=' '>
         <div className='flex gap-2'>
             <div className='flex-1'>
-            <AddInputs type='text' placeholder='Enter product name' label='Products Used' customStyles=''
+            <AddInputs type='text' placeholder='Enter product name' label='Products Used' required customStyles=''
             value={input} onChange={(e) => setInput(e.target.value)}/>
             </div>
 
             <div className='mt-6'>
-            <button 
-            type='button' 
-            onClick={handleAdd}
-            className='border bg-black text-white rounded-2xl px-4 py-2
-               hover:bg-rose-200 hover:text-black'> + </button>
+                <button 
+                type='button' 
+                onClick={handleAdd}
+                className='border bg-black text-white rounded-2xl px-4 py-2 hover:bg-rose-200 hover:text-black'>
+                     + 
+                </button>
             </div>
         </div>
 

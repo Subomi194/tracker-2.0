@@ -12,11 +12,14 @@ export function NavLogo ({expanded}: LogoProps) {
       <div className='flex items-center'>
         <img src="/logo.png" alt="" className={`w-14 h-14 rounded-full object-cover hover:scale-110 hover:ring hover:ring-rose-400/60 hover:shadow-lg
           ${expanded
-            ? "-scale-x-100"
-            : ""
+            ? "-scale-x-100 absolute md:left-68 left-48"
+            : "absolute md:left-20 left-6"
           }
           `} />
-        <h1 className='font-bold ml-4 text-lg '>Hair Routine Tracker</h1>
+        <h1 className={`font-bold ml-4 text-lg  ${expanded
+            ? " absolute md:left-82 left-60 hidden md:block"
+            : "absolute md:left-34 left-20"
+          } `}>Hair Routine Tracker</h1>
       </div>
 
       {/*navbar

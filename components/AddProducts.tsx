@@ -27,7 +27,7 @@ const AddProducts = () => {
     <div className=' '>
         <div className='flex gap-2'>
             <div className='flex-1'>
-            <AddInputs type='text' placeholder='Enter product name' label='Products Used' required customStyles=''
+            <AddInputs type='text' placeholder='Enter product name' label='Products Used' customStyles=''
             value={input} onChange={(e) => setInput(e.target.value)}/>
             </div>
 
@@ -49,9 +49,17 @@ const AddProducts = () => {
 
         <div className='flex gap-2 mt-2'>
             {products.map((product) => (
-                <div key={product} className='bg-rose-100 border border-rose-300 rounded-full px-3 py-1 text-sm'>
-                    {product}
-                </div>
+                <button 
+                type='button'
+                key={product} 
+                onClick={() => setProducts(products.filter(p => p !== product))}
+                className='bg-rose-100 border border-rose-300 text-rose-900 rounded-full px-3 py-1 text-sm gap-2 flex'>
+                    <div>{product} </div>
+                    <span className=''>×</span> 
+                </button>
+                 
+                
+            
             ))}
         </div>
     </div>

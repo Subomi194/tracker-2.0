@@ -22,7 +22,13 @@ const AddRoutineForm = ({routineTypes}: {routineTypes: RoutineType[]}) => {
     const [selectedTypes, setSelectedTypes] = useState<number[]>([])
     const [activeRoutineType, setActiveRoutineType] = useState("")
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [resetKey, setResetKey] = useState(0)
 
+    async function handleSubmit(formData: FormData) {
+
+        await addRoutine(formData)
+        setResetKey(prev => prev + 1)
+    }
 
     const handleTypeChange = (id: number, checked: boolean) => {
         setSelectedTypes((prev) => {
@@ -38,7 +44,7 @@ const AddRoutineForm = ({routineTypes}: {routineTypes: RoutineType[]}) => {
     const onClose = () => setIsModalOpen(false);
 
     return (
-        <form action={addRoutine} className=''>
+        <form action={handleSubmit} className=''>
         
             <div className=' py-6 md:px-40 md:py-6 '>
               <div className='border border-gray-200 p-6 rounded-lg bg-white shadow-xl'>
@@ -76,7 +82,7 @@ const AddRoutineForm = ({routineTypes}: {routineTypes: RoutineType[]}) => {
 
                 <AddInputs type='date' name='date' label='Date' required customStyles='hover:bg-rose-300 hover:text-rose-900'/>
     
-                <AddProducts/>
+                <AddProducts key={resetKey}/>
 
                 <AddTextarea label='Notes' name='notes' placeholder='How did your hair feel? Any observations?' rows= {2} customStyles=''/>
     

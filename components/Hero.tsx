@@ -1,17 +1,20 @@
-"use Client"
+"use client"
 
-import React from 'react';
-import Image from 'next/image';
 import CustomButton from './ui/CustomButton';
-import { userProps } from '@/types/user'
+import { UserProps } from '@/types/user'
 
-const Hero = ({name, email}: userProps) => {
+const Hero = ({name, email}: UserProps) => {
+
+    console.log("HERO NAME:", name)
+    console.log("HERO email:", email)
+
   return (
     <div className="mx-auto max-w-360 ">
         <div className=" pt-32 ">
             <h1 className="text-3xl font-semibold ">
-                Hi <span>{name ?? "User"}</span>
+                Hi <span >{name}</span>
             </h1>
+            <p>{email}</p>
 
             <p >
                 Welcome to your hair routine tracker

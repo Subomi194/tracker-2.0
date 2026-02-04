@@ -7,7 +7,6 @@ import CustomButton from './ui/CustomButton'
 import SidebarLink from './SidebarLink'
 import { sidebarData } from '@/data/SidebarData'
 import { useSidebar } from "@/context/SidebarContext";
-import SidebarUser from './ui/SidebarUser';
 
 
 const Sidebar = () => {

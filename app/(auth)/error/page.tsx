@@ -3,6 +3,8 @@
 'use client'
 import { useSearchParams } from "next/navigation"
 
+export const dynamic = 'force-dynamic'
+
 export default function Page() {
   const searchParams = useSearchParams()
   const type = searchParams.get("type")

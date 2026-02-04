@@ -1,0 +1,34 @@
+
+profile:
+    id,
+    name
+    created_at
+
+routine_types:
+    id,
+    name
+
+routines:
+    id,
+    user_id;
+    routine_type_id,
+    date,
+    notes,
+    products
+
+routine_routine_types:
+    id,
+    routine_id,
+    routine_type_id,
+    created_at
+
+//products:
+    id,
+    user_id,
+    name,
+    category
+
+//routine_products:
+    id,
+    routine_id,
+    product_id

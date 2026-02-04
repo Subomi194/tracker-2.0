@@ -1,7 +1,7 @@
-import { userProps } from '@/types/user'
+import { UserProps } from '@/types/user'
 import React from 'react'
 
-const NavbarUser = ({ email}: userProps) => {
+const NavbarUser = ({ email}: UserProps) => {
   return (
     <div>
         <p>{email ?? "test@gmail.com"}</p>

@@ -21,7 +21,7 @@ export default function AuthErrorContent() {
     
             <a
               href={type === 'reset' ? '/forgotPassword' : '/login'}
-              className="text-rose-500 font-medium underline"
+              className="text-rose-500 font-medium"
             >
               {type === 'reset'
                 ? 'Request a new reset link'

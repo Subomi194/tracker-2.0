@@ -4,14 +4,16 @@
 export const dynamic = 'force-dynamic'
 
 import { Suspense } from 'react'
-import AuthErrorContent from './AuthErrorContent'
+import ErrorContent from './errorContent'
+
+
 
 
 export default function Page() {
   return (
 
     <Suspense fallback={<div className="min-h-screen" />}>
-      <AuthErrorContent/>
+      <ErrorContent/>
     </Suspense>
   )
 }

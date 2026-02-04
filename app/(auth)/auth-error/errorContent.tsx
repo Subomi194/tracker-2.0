@@ -1,8 +1,9 @@
-'use client'
+    'use client'
 
 import { useSearchParams } from "next/navigation"
 
-export default function AuthErrorContent() {
+export default function ErrorContent() {
+
     const searchParams = useSearchParams()
       const type = searchParams.get("type")
     

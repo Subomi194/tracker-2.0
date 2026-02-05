@@ -24,6 +24,8 @@ const Page = () => {
       <div className="rounded-[1.75rem] bg-rose-100/70 shadow-sm p-2 h-full">
         <div className="rounded-3xl bg-white p-4 sm:p-2 h-full">
           <div className="rounded-2xl hover:border-4 hover:border-rose-400/70 p-6 space-y-4 h-full flex flex-col justify-center">
+
+          <h2 className=" text-2xl font-bold text-rose-400">Hair Routine Tracker</h2>
               
               <h1 className=" text-xl font-semibold text-center">Complete your profile</h1>
 

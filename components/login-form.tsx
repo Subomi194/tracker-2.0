@@ -47,6 +47,7 @@ export function LoginForm() {
           <div className="rounded-2xl hover:border-4 hover:border-rose-400/70 p-6 space-y-4 h-full flex flex-col justify-center">
 
             <div className="text-center space-y-2">
+              <h2 className=" text-2xl font-bold text-rose-400">Hair Routine Tracker</h2>
               <h3 className=" text-xl font-semibold">Welcome Back</h3>
               <p className="font-medium text-gray-500">Sign in to track your hair care journey</p>
             </div>

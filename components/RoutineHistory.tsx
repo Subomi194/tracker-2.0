@@ -64,7 +64,7 @@ const RoutineHistory = ({routines}: {routines: RoutineComponent[]}) => {
                                     ))
                                 ) : (
                                     <span className="text-gray-400 text-sm italic">
-                                    No products added
+                                    No products added!
                                     </span>
                                 )}
                                 </div>
@@ -73,7 +73,17 @@ const RoutineHistory = ({routines}: {routines: RoutineComponent[]}) => {
                         {/* Notes */}
                         <div className="flex-1">
                             <p className="mt-4 text-gray-600">Notes:</p>
-                            <p className='mt-2'>{routine.notes}</p>
+                            <div className="flex flex-wrap gap-2">
+                                {routine.notes.length > 0 ? (
+                                  <p className='mt-2'>{routine.notes}</p>  
+                                    
+                                ) : (
+                                    <span className="text-gray-400 text-sm italic">
+                                    No notes added!
+                                    </span>
+                                )}
+                            </div>
+                            
                         </div>
                         
                     </div>

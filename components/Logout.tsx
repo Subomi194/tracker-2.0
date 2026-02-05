@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import SubmitButton from './ui/SubmitButton'
 import { signOut } from '@/app/auth/actions';
 
 const Logout = () => {
 
   return (
     <form action={signOut}>
-        <SubmitButton title='Logout' btnType='submit'/>
+        <button type='submit' className='bg-rose-100 text-rose-600 px-4 py-1.5 rounded-full text-sm hover:bg-rose-200 transition'>Logout</button>
     </form>
   )
 }

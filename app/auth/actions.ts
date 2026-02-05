@@ -4,21 +4,20 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 import { createClient} from '@/lib/supabase/server'
-import { error } from 'console'
 
-//export async function getUserSession() {
+export async function getUserSession() {
 
-  //const supabase = await createClient();
+  const supabase = await createClient();
 
-  //const {data, error} = await supabase.auth.getUser();
+  const {data, error} = await supabase.auth.getUser();
 
-  //if (error) {
-  //  return null;
-  //}
+  if (error) {
+    return null;
+  }
 
-  //return {user: data?.user};
+  return {user: data?.user};
 
-//}
+}
 
 export async function signUp(formData: FormData) {
 

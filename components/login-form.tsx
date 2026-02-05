@@ -44,7 +44,7 @@ export function LoginForm() {
     <form action={handleSubmit} className="rounded-4xl bg-rose-400/70 p-2">
       <div className="rounded-[1.75rem] bg-rose-100/70 shadow-sm p-2 h-full">
         <div className="rounded-3xl bg-white p-4 sm:p-2 h-full ">
-          <div className="rounded-2xl hover:border-4 hover:border-rose-400/70 p-6 space-y-4 h-full flex flex-col justify-center">
+          <div className="rounded-2xl hover:border-4 hover:border-rose-400/70 p-6 space-y-4">
 
             <div className="text-center space-y-2">
               <h2 className=" text-2xl font-bold text-rose-400">Hair Routine Tracker</h2>
@@ -89,8 +89,9 @@ export function LoginForm() {
               <a href="/register" className="text-rose-400 font-bold"> Sign Up</a> 
             </p>
 
-            <a href="/forgotPassword" className="text-rose-400 font-bold text-center">Forgot your password? </a>
-
+            <div className="text-center">
+              <a href="/forgotPassword" className="text-rose-400 font-bold">Forgot your password? </a>
+            </div>
            
           </div>
         </div>

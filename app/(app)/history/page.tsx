@@ -36,7 +36,7 @@ const page = async () => {
        
   return (
     <div>
-      <div className='px-6'>
+      <div className='px-4'>
         <Header 
           title='Routine History' 
           description='View your past hair care routines'

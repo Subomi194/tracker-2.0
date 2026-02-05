@@ -10,7 +10,7 @@ const RoutineHistory = ({routines}: {routines: RoutineComponent[]}) => {
 
 
   return (
-    <div className="p-6">
+    <div className="md:p-6 p-2">
 
         {routines.length === 0 && (
             <div className='text-center py-20'>
@@ -34,7 +34,7 @@ const RoutineHistory = ({routines}: {routines: RoutineComponent[]}) => {
                         {routine.routine_routine_types.map((rrt) => (
                             <div
                                 key={rrt.routine_types.id}
-                                className="bg-gray-100 text-gray-800 text-sm font-medium px-2.5 py-0.5 rounded-full"
+                                className=" text-base font-medium rounded-full bg-rose-50 text-rose-700 px-3 py-1 border border-rose-200"
                             >
                                 {rrt.routine_types.name}
                             </div>
@@ -45,19 +45,19 @@ const RoutineHistory = ({routines}: {routines: RoutineComponent[]}) => {
                         {/* Date */}
                         <div className='flex justify-between'>
                             <div>
-                                <p>{formatDate(routine.date)}</p>
+                                <p className="text-gray-600">{formatDate(routine.date)}</p>
                             </div>
                         </div>
 
                         {/*Products*/}
                         <div className="flex-1">
-                            <p>Products:</p>
+                            <p className="text-gray-600">Products:</p>
                             <div className="flex flex-wrap gap-2">
                                 {routine.products.length > 0 ? (
                                     routine.products.map((product, index) => (
                                     <span
                                         key={index}
-                                        className="bg-rose-50 text-rose-700 text-xs px-3 py-1 rounded-full border border-rose-200"
+                                        className=" text-xs border bg-gray-100 text-gray-800  font-medium px-2.5 py-0.5 rounded-full"
                                     >
                                         {product}
                                     </span>
@@ -72,8 +72,8 @@ const RoutineHistory = ({routines}: {routines: RoutineComponent[]}) => {
 
                         {/* Notes */}
                         <div className="flex-1">
-                            <p className="mt-4 text-gray-700">Notes:</p>
-                            <p className=''>{routine.notes}</p>
+                            <p className="mt-4 text-gray-600">Notes:</p>
+                            <p className='mt-2'>{routine.notes}</p>
                         </div>
                         
                     </div>

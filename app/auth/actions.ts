@@ -50,6 +50,7 @@ export async function signUp(formData: FormData) {
   }) 
 
   if (error) {
+    console.error('SIGNUP ERROR:', error.message)
     if (error.message.includes('User already registered')) {
       return { error: 'An account with this email already exists.' }
     }

@@ -89,9 +89,9 @@ export function LoginForm() {
               <a href="/register" className="text-rose-400 font-bold"> Sign Up</a> 
             </p>
 
-            <div className="text-center">
+            {/* <div className="text-center">
               <a href="/forgotPassword" className="text-rose-400 font-bold">Forgot your password? </a>
-            </div>
+            </div> */}
            
           </div>
         </div>

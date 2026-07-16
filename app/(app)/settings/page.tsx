@@ -4,11 +4,11 @@ import Header from '@/components/ui/Header'
 const page = () => {
   return (
     <div>
-        <Header
+        {/* <Header
         title='Settings'
-        description='Manage your profile and preferences'
+        description='Manage your profile and preferences' */}
         
-        />
+        
     </div>
   )
 }

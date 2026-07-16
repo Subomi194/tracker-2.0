@@ -88,6 +88,7 @@ export async function signIn(formData: FormData) {
   })
 
   if (error) {
+    console.log('SIGNIN RESULT:', { data, error })
     // Friendly, non-technical messages
     if (error.message.includes('Invalid login credentials')) {
       return { error: 'INVALID_CREDENTIALS' }

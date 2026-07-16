@@ -10,16 +10,19 @@ export const sidebarData: SidebarItemProps[] = [
   {
     icon: BiHomeAlt,
     title: "Home",
+    header: "",
     path: "/",
   },
   {
     icon: PiPlusBold,
-    title: "Add",
+    title: "Add Entry",
+    header: "Log Entry",
     path: "/add",
   },
   {
     icon: LuHistory,
     title: "History",
+    header: "Routine History",
     path: "/history",
   },
   //{
@@ -30,6 +33,7 @@ export const sidebarData: SidebarItemProps[] = [
   {
     icon: LuSettings,
     title: "Settings",
+    header: "Settings",
     path: "/settings",
   }
 ];

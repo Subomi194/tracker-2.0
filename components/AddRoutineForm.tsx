@@ -8,7 +8,7 @@ import { addRoutine } from '@/app/(app)/add/actions';
 import AddProducts from './AddProducts';
 import Modal from './ui/Modal';
 import { LuBadgeInfo } from "react-icons/lu";
-import formatDate from '@/lib/utils/formatDate';
+import {shortFormatDate} from '@/lib/utils/formatDate';
 
 
 
@@ -47,32 +47,53 @@ const AddRoutineForm = ({routineTypes}: {routineTypes: RoutineType[]}) => {
         <form action={handleSubmit} className=''>
         
             <div className=' py-6 md:px-40 md:py-6 '>
-              <div className='border border-gray-200 p-6 rounded-lg bg-white shadow-xl'>
-                <h3 className='font-bold'>Routine Details</h3>
-                <h4 className=' text-gray-500 mb-4'>Fill in the details of your hair routine</h4>
+              <div className='border border-gray-200 p-6 rounded-2xl bg-white shadow-xl'>
+                {/* <h3 className='font-bold'>Routine Details</h3>
+                <h4 className=' text-gray-500 mb-4'>Fill in the details of your hair routine</h4> */}
                 
                 <div className='space-y-3'>
 
                 <p className='text-base font-semibold mb-1'>Routine Types</p>
 
-                <div className='space-y-0.5'>
+                <div className='flex flex-wrap gap-3'>
                   <input type="hidden" name='routine_type_ids' value={JSON.stringify(selectedTypes)}  />
-                  {routineTypes?.map((type) => (
-                    <div key={type.id} className='flex gap-2 '>
-                      <input type='checkbox' className='accent-rose-500 ' checked={selectedTypes.includes(type.id)} 
-                      onChange={(e) => handleTypeChange(type.id, e.target.checked)} />
-                      <p>{type.name}</p>
-                      <div></div>
+                  <div className='flex flex-wrap gap-2'>
+                    {routineTypes?.map((type) => {
+                       const selected = selectedTypes.includes(type.id);
+
+                       return (
+                        <button key={type.id} type='button' 
+                          onClick={() => 
+                            handleTypeChange(type.id, !selected)
+                          }
+                          className={`
+                            rounded-full
+                            px-4
+                            py-2
+                            text-sm
+                            font-medium
+                            transition-colors
+                            ${
+                              selected
+                                ? "bg-rose-500 text-white"
+                                : "bg-rose-100 text-rose-700 border border-rose-200"
+                            }
+                          `}
+                        >
+                          {type.name}
+                        </button> 
+                       );
+                      })}
+                    
                       
-                      <button onClick={() => {
+                      {/* <button onClick={() => {
                         setActiveRoutineType(type.name);
                         setIsModalOpen(true);
                       }}> 
                       <LuBadgeInfo />
-                      </button>
+                      </button> */}
 
-                    </div>
-                  ))}
+                  </div>
                 </div>
                 
                 {

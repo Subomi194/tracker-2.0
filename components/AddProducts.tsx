@@ -53,7 +53,7 @@ const AddProducts = () => {
                 type='button'
                 key={product} 
                 onClick={() => setProducts(products.filter(p => p !== product))}
-                className='bg-rose-100 border border-rose-300 text-rose-900 rounded-full px-3 py-1 text-sm gap-2 flex'>
+                className='bg-rose-100 border border-rose-300 text-rose-900 rounded-lg px-3 py-1 text-sm gap-2 flex'>
                     <div>{product} </div>
                     <span className=''>×</span> 
                 </button>

@@ -35,6 +35,7 @@ const Sidebar = () => {
                         key={item.title}
                         expanded={expanded}
                         title={item.title}
+                        header={item.header}
                         path={item.path}
                         icon={item.icon}
                     />

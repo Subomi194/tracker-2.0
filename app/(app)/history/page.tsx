@@ -36,12 +36,11 @@ const page = async () => {
        
   return (
     <div>
-      <div className='px-4'>
+      {/* <div>
         <Header 
           title='Routine History' 
-          description='View your past hair care routines'
         />
-      </div>
+      </div> */}
       <RoutineHistory routines={routines ?? []}/>
     </div>
   )

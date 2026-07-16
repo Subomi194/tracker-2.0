@@ -5,7 +5,7 @@ import { SidebarItemProps } from '@/types/navigation'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-const SidebarLink = ({title, path, icon: Icon, expanded}: SidebarItemProps) => {
+const SidebarLink = ({title, header, path, icon: Icon, expanded}: SidebarItemProps) => {
     const pathname = usePathname();
     const isActive = pathname === path;
 

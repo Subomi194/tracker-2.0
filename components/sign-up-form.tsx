@@ -6,21 +6,15 @@ import SubmitButton from "./ui/SubmitButton"
 import { useState } from "react"
 
 export function SignUpForm() {
-  const [message, setMessage] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   async function handleSubmit(formData: FormData) {
-    setMessage(null)
     setError(null)
 
     const result = await signUp(formData)
 
     if (result?.error) {
       setError(result.error)
-    } 
-
-    if (result?.success) {
-      setMessage(result.success)
     }
 
   }
@@ -44,10 +38,6 @@ export function SignUpForm() {
             </div>
 
             <SubmitButton btnType="submit" title="Sign Up"/>
-
-            {message && (
-              <p className="text-green-600 text-sm text-center mb-4">{message}</p>
-            )}
 
             {error && (
               <p className="text-red-600 text-sm text-center mb-4">{error}</p>

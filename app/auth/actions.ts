@@ -58,7 +58,6 @@ export async function signUp(formData: FormData) {
     return { error: 'Failed to create account. Please try again.' }
   }
 
-
   redirect('/profile')
   // if (data?.user && !data.user.email_confirmed_at) {
   //   return {

@@ -4,14 +4,21 @@ import React from 'react'
 import { SidebarItemProps } from '@/types/navigation'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useSidebar } from '@/context/SidebarContext'
 
 const SidebarLink = ({title, header, path, icon: Icon, expanded}: SidebarItemProps) => {
     const pathname = usePathname();
     const isActive = pathname === path;
+    const { toggle } = useSidebar();
 
   return (
     <Link
       href={path}
+      onClick={() => {
+        if (window.innerWidth < 768) {
+          toggle()
+        }
+      }}
       className={`px-4 py-2 rounded-xl flex items-center gap-3 transition hover:text-white hover:bg-rose-400/50
         ${isActive ? "bg-rose-400 text-white" : "text-black"}
       `}

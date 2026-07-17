@@ -8,6 +8,7 @@ import { calculateTimeOfDay, calculateDaysSince } from '@/lib/utils/calculate'
 import { shortFormatDate } from '@/lib/utils/formatDate'
 import { NavLogo } from './ui/Logo';
 import Logout from './Logout'
+import { RiMenu2Line } from 'react-icons/ri'
 
 type HeroProps = {
   name: UserProps['name']
@@ -26,8 +27,14 @@ const Hero = ({ name, routines = [], lastWashDate, lastStyleDate }: HeroProps) =
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
-
+      
       <div className="flex items-center justify-between mb-6">
+       
+        <button onClick={toggle} className="rounded-xl hover:bg-rose-50 transition text-gray-600 hover:text-rose-400 md:hidden block">
+          <RiMenu2Line size={22} />
+        </button>       
+       
+
         <button
           onClick={toggle}
           className="md:hidden p-2 rounded-xl hover:bg-rose-50"
@@ -35,6 +42,7 @@ const Hero = ({ name, routines = [], lastWashDate, lastStyleDate }: HeroProps) =
         >
           <NavLogo/>
         </button>
+
         <div className="ml-auto">
           <Logout />
         </div>

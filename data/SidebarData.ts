@@ -30,12 +30,12 @@ export const sidebarData: SidebarItemProps[] = [
     //title: "Products",
     //path: "/products",
   //},
-  // {
-  //   icon: LuSettings,
-  //   title: "Settings",
-  //   header: "Settings",
-  //   path: "/settings",
-  // }
+  {
+    icon: LuSettings,
+    title: "Settings",
+    header: "Settings",
+    path: "/settings",
+  }
 ];
 
 

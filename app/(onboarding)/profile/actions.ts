@@ -40,3 +40,32 @@ export async function saveProfile(formData: FormData) {
 
     redirect("/")
 }
+
+export async function changeDisplayName(formData: FormData) {
+
+  console.log('change display name ACTION HIT')
+
+  const supabase = await createClient()
+  const name = formData.get("name") as string | null
+
+  if (!name || name.trim().length === 0) {
+    return { error: 'Please enter a name.' }
+  }
+
+  const {data:{user}} = await supabase.auth.getUser();
+
+   if (!user) return { error: 'Not logged in.' }
+
+  const {error} = await supabase 
+    .from('profiles')
+    .update({ name: name.trim() })
+    .eq('id', user.id)
+
+  if (error) {
+    return { error: error.message }
+  }
+
+  revalidatePath('/settings/personal')
+  return { success: 'Name updated successfully.' }
+
+}

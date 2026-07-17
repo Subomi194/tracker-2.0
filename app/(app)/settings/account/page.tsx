@@ -1,17 +1,12 @@
-import { createClient } from '@/lib/supabase/server'
-import readProfile from '@/app/(onboarding)/profile/readProfile'
 import SettingsAccount from '@/components/settings/SettingsAccount'
+import { changePassword, deleteAccount } from '../actions'
 
-export default async function PersonalPage() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return null
-
-  const data = await readProfile()
-
+export default function AccountPage() {
   return (
     <SettingsAccount
-      
+      changePassword={changePassword}
+      deleteAccount={deleteAccount}
     />
   )
 }
+

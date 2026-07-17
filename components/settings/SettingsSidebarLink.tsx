@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 
 const settingsLinks = [
   { title: 'Profile',       path: '/settings/personal' },
-  { title: 'Hair profile',  path: '/settings/hair' },
+  // { title: 'Hair profile',  path: '/settings/hair' },
   { title: 'Notifications', path: '/settings/notification' },
   { title: 'Account',       path: '/settings/account' },
 ]

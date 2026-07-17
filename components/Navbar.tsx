@@ -133,6 +133,9 @@ const Navbar = ({onSearch}: NavbarProps) => {
               </span>
             </div>
           )}
+
+           {/* Settings */}
+            {pathname === '/settings'}
           <div className="hidden md:block">
             <Logout/>
           </div>

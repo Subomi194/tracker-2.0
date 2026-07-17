@@ -46,8 +46,6 @@ export function SignUpForm() {
             <p className="font-medium text-gray-500 text-center">Already have an account? 
               <a href="/login" className="text-rose-400 font-bold"> Sign In</a> 
             </p>
-
-           
           </div>
         </div>
       </div>

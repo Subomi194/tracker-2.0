@@ -35,6 +35,9 @@ export async function signUp(formData: FormData) {
     return { error: 'Please fill in all fields.' }
   }
 
+  if (password.length < 8) {
+    return { error: 'Password must be at least 8 characters.' }
+  }
 
   if (password !== confirmPassword) {
     return { error: 'Passwords do not match.' }
@@ -183,3 +186,5 @@ export async function resetPassword(formData: FormData) {
 
 
 }
+
+

@@ -3,18 +3,20 @@
 import Link from 'next/link'
 import { useSidebar } from "@/context/SidebarContext"
 import { RoutineComponent } from '@/types/routine'
+import { UserProps } from '@/types/user'
 import { calculateTimeOfDay, calculateDaysSince } from '@/lib/utils/calculate'
 import { shortFormatDate } from '@/lib/utils/formatDate'
 import { NavLogo } from './ui/Logo';
 import Logout from './Logout'
 
 type HeroProps = {
+  name: UserProps['name']
   routines: RoutineComponent[]
   lastWashDate: string | null
   lastStyleDate: string | null
 }
 
-const Hero = ({ routines = [], lastWashDate, lastStyleDate }: HeroProps) => {
+const Hero = ({ name, routines = [], lastWashDate, lastStyleDate }: HeroProps) => {
   const { toggle } = useSidebar()
   
   const greeting = calculateTimeOfDay()
@@ -40,7 +42,7 @@ const Hero = ({ routines = [], lastWashDate, lastStyleDate }: HeroProps) => {
 
       {/* Greeting */}
       <div>
-        <p className="text-2xl font-semibold text-gray-800">{greeting} 👋</p>
+        <p className="text-2xl font-semibold text-gray-800">{greeting}, {name || "User"}</p>
         <p className="text-gray-500 text-sm mt-1">Here's your hair journey at a glance.</p>
       </div>
 

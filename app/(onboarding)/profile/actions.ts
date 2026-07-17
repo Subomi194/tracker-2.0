@@ -1,8 +1,10 @@
+
 "use server";
 
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/lib/supabase/server'
+import { revalidatePath } from 'next/cache';
 
 export async function saveProfile(formData: FormData) {
 
@@ -12,25 +14,29 @@ export async function saveProfile(formData: FormData) {
     const name = formData.get("name") as string | null
 
     if (!name || name.trim().length === 0 ) {
-        throw new Error("Name is required")
+        return { error: "Please enter your name."}
     }
 
     //get user_id from auth
     const {data:{user}} = await supabase.auth.getUser();
 
-    if (!user) throw new Error("User not found")
+    if (!user) {
+        redirect('/login')
+    }
 
     //insert user id and name into profiles
     const {error} = await supabase 
     .from('profiles')
     .upsert({
         id: user.id,
-        name: name
+        name,
     })
-    .select()
-    .single()
+    if (error) {
+        console.error("PROFILE SAVE ERROR:", error)
+    return { error: "Failed to save profile. Please try again." }
+    }
 
-    if (error) throw error
+    revalidatePath('/')
 
     redirect("/")
 }

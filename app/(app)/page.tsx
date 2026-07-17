@@ -2,7 +2,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { RoutineComponent } from '@/types/routine'
 import Hero from '@/components/Hero'
-
+import readProfile from '@/app/(onboarding)/profile/readProfile'
+import { signUp } from "@/app/auth/actions"
 
 
 const Home = async () => {
@@ -48,10 +49,13 @@ const Home = async () => {
     )
   )
 
+  const data = await readProfile();
+
   return (
     <div>
       <main>
         <Hero
+      name={data?.profile?.name}
       routines={allRoutines}
       lastWashDate={lastWash?.date ?? null}
       lastStyleDate={lastStyle?.date ?? null}

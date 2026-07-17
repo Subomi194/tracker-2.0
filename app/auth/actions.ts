@@ -40,13 +40,13 @@ export async function signUp(formData: FormData) {
     return { error: 'Passwords do not match.' }
   }
 
-  const { data, error } = await supabase.auth.signUp({
+  const { error } = await supabase.auth.signUp({
     email,
     password,
-    options: {
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+    // options: {
+    //   emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
 
-    }
+    // }
   }) 
 
   if (error) {
@@ -57,13 +57,15 @@ export async function signUp(formData: FormData) {
 
     return { error: 'Failed to create account. Please try again.' }
   }
-   
-  if (data?.user && !data.user.email_confirmed_at) {
-    return {
-      success: 'Check your email to confirm your account before signing in.',
-    }
-  }
-  
+
+
+  redirect('/profile')
+  // if (data?.user && !data.user.email_confirmed_at) {
+  //   return {
+  //     success: 'Check your email to confirm your account before signing in.',
+  //   }
+  // }
+ 
 }
 
 export async function signIn(formData: FormData) {

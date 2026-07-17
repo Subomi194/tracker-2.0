@@ -1,16 +1,5 @@
-import React from 'react'
-import Header from '@/components/ui/Header'
+import { redirect } from 'next/navigation'
 
-const page = () => {
-  return (
-    <div>
-        {/* <Header
-        title='Settings'
-        description='Manage your profile and preferences' */}
-        
-        
-    </div>
-  )
+export default function SettingsPage() {
+  redirect('/settings/personal')
 }
-
-export default page

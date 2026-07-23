@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider } from "@/context/SidebarContext";
+import Footer from "@/components/ui/Footer";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -19,6 +20,11 @@ export const metadata: Metadata = {
   title: "Hair Routine Tracker",
   description: "Log your Hair Routine here",
 };
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
 
 export default function RootLayout({
   children,

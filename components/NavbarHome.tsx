@@ -3,6 +3,7 @@
 import Logout from './Logout'
 import { longFormatDate } from "@/lib/utils/formatDate"
 import { calculateTimeOfDay, calculateDaysSince } from "@/lib/utils/calculate"
+import NavbarUser from '@/components/ui/NavbarUser'
 
 type NavbarHomeProps = {
   lastWashDate?: string | null
@@ -38,7 +39,7 @@ const NavbarHome = ({ lastWashDate, lastStyleDate, totalEntries = 0 }: NavbarHom
           </div>
         </div>
 
-        <Logout />
+        <NavbarUser />
       </nav>
     </header>
   )

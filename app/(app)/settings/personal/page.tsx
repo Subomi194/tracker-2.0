@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import readProfile from '@/app/(onboarding)/profile/readProfile'
 import SettingsProfile from '@/components/settings/SettingsProfile'
 import { changeDisplayName } from '@/app/(onboarding)/profile/actions'
+import NavbarUser from '@/components/ui/NavbarUser'
 
 export default async function PersonalPage() {
   const supabase = await createClient()
@@ -16,5 +17,6 @@ export default async function PersonalPage() {
       name={data?.profile?.name ?? ''}
       changeDisplayName={changeDisplayName}
     />
+
   )
 }

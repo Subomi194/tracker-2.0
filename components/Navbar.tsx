@@ -17,7 +17,7 @@ type NavbarProps = {
 }
 
 const pageTitles: Record<string, string> = {
-  '/': 'Hair Routine Tracker',
+  '/dashboard': 'Hair Routine Tracker',
   '/add': 'Log Entry',
   '/history': 'History',
   '/products': 'Products',
@@ -37,7 +37,7 @@ const Navbar = ({onSearch}: NavbarProps) => {
   
   return (
     <>
-      <header className='w-full bg-white/80 backdrop-blur shadow-lg fixed top-0 left-0 right-0 md:block hidden'>
+      <header className='w-full bg-white/80 backdrop-blur shadow-lg fixed top-0 left-0 right-0 md:block hidden z-40'>
       <nav className='flex items-center justify-between h-16 px-4 md:px-6'>
 
         {/* Desktop navlogo - image */}
@@ -55,7 +55,7 @@ const Navbar = ({onSearch}: NavbarProps) => {
         {/* Right — changes per page */}
         <div className='flex items-center gap-4'>
 
-          {/* Home — nothing extra, stats live in Hero */}
+          {/* Home — nothing extra, stats live in Home */}
 
           {/* Add entry — today's date */}
           {pathname === '/add' && (
@@ -94,7 +94,7 @@ const Navbar = ({onSearch}: NavbarProps) => {
 
     </header>
 
-    <header className='w-full bg-white/80 backdrop-blur shadow-lg fixed top-0 left-0 right-0 block md:hidden'>
+    <header className='w-full bg-white/80 backdrop-blur shadow-lg fixed top-0 left-0 right-0 block md:hidden z-40'>
       <nav className='flex items-center justify-between h-16 px-4 md:px-6'>
 
         {/* mobile navlogo - hamburger */}
@@ -109,7 +109,7 @@ const Navbar = ({onSearch}: NavbarProps) => {
         {/* Right — changes per page */}
         <div className='flex items-center gap-4'>
 
-          {/* Home — nothing extra, stats live in Hero */}
+          {/* Home — nothing extra, stats live in Home */}
 
           {/* Add entry — today's date */}
           {pathname === '/add' && (
@@ -126,7 +126,7 @@ const Navbar = ({onSearch}: NavbarProps) => {
                 placeholder="Search entries..."
                 value={searchQuery}
                 onChange={handleSearch}
-                className='text-sm bg-rose-50 border border-rose-200 rounded-xl px-4 py-1.5 pr-8 w-40 md:w-56 focus:outline-none focus:ring-2 focus:ring-rose-300 placeholder:text-gray-400'
+                className='text-base bg-rose-50 border border-rose-200 rounded-xl px-4 py-1.5 pr-8 w-40 md:w-56 focus:outline-none focus:ring-2 focus:ring-rose-300 placeholder:text-gray-400'
               />
               <span className='absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs'>
                 ⌘K

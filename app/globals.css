@@ -3,6 +3,18 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --rose-deep:        #5C1E33;
+  --rose-deep-hover:  #4A1828;
+  --rose-mid:         #8A3350;
+  --pink-accent:      #E8536E;
+  --pink-accent-hover:#D03F5B;
+  --blush-light:      #FBE4E9;
+  --blush-light-hover:#F6D3DA;
+  --blush-border:     #F0C9D2;
+  --cream:            #fdf8f3;
+  --ink:              #2A1620;
+  --ink-muted:        #6B5560;  
 }
 
 @theme inline {
@@ -11,13 +23,18 @@
 
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff;
-    --foreground: #0a0a0a;
-  }
+  --color-rose-deep:    #5C1E33;   
+  --color-rose-deep-hover:  #4A1828;
+  --color-rose-mid:         #8A3350;
+  --color-pink-accent:      #E8536E;
+  --color-pink-accent-hover:#D03F5B;
+  --color-blush-light:      #FBE4E9;
+  --color-blush-light-hover:#F6D3DA;
+  --color-blush-border:     #F0C9D2;
+  --color-cream:            #fdf8f3;
+  --color-ink:              #2A1620;
+  --color-ink-muted:        #6B5560;  
 }
 
 body {
@@ -37,4 +54,6 @@ body {
 }
   
 }
+
+
 

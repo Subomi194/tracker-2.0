@@ -8,6 +8,7 @@ export type InputsItemProps = {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     required?: boolean;
     defaultValue?: string | number;
+    
 
 
 }

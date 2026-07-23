@@ -36,9 +36,9 @@ export async function saveProfile(formData: FormData) {
     return { error: "Failed to save profile. Please try again." }
     }
 
-    revalidatePath('/')
+    revalidatePath('/dashboard')
 
-    redirect("/")
+    redirect("/dashboard")
 }
 
 export async function changeDisplayName(formData: FormData) {

@@ -81,7 +81,7 @@ export default function SettingsAccount({ changePassword, deleteAccount }: Setti
               required
               minLength={6}
               placeholder="Min. 6 characters"
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-white"
+              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-white"
             />
           </div>
           <div>
@@ -93,7 +93,7 @@ export default function SettingsAccount({ changePassword, deleteAccount }: Setti
               name="confirmPassword"
               required
               placeholder="Repeat new password"
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-white"
+              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-white"
             />
           </div>
           <div className="flex gap-2 pt-1">

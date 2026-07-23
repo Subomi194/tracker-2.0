@@ -64,7 +64,7 @@ export default function SettingsProfile({ email, name, changeDisplayName }: Sett
           name="name"
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
-          className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-transparent"
+          className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-transparent"
         />
       </div>
 

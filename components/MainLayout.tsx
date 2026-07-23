@@ -3,6 +3,7 @@
 import { useSidebar } from "@/context/SidebarContext";
 import { usePathname } from 'next/navigation'
 import Navbar from "./Navbar";
+import Footer from "./ui/Footer";
 
 type MainLayoutProps = {
   children: React.ReactNode
@@ -13,7 +14,7 @@ const MainLayout = ({ children, onSearch }: MainLayoutProps) => {
   const pathname = usePathname();
   const { expanded } = useSidebar();
 
-  const isHome = pathname === "/";
+  const isHome = pathname === "/dashboard";
 
   return (
     <div

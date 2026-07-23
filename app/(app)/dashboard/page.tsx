@@ -1,12 +1,12 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { RoutineComponent } from '@/types/routine'
-import Hero from '@/components/Hero'
+import Home from '@/components/Home'
 import readProfile from '@/app/(onboarding)/profile/readProfile'
 import { signUp } from "@/app/auth/actions"
 
 
-const Home = async () => {
+const page = async () => {
   const supabase = await createClient()
 
   console.log('Home ACTION HIT')
@@ -54,12 +54,12 @@ const Home = async () => {
   return (
     <div>
       <main>
-        <Hero
-      name={data?.profile?.name}
-      routines={allRoutines}
-      lastWashDate={lastWash?.date ?? null}
-      lastStyleDate={lastStyle?.date ?? null}
-    />
+        <Home
+          name={data?.profile?.name}
+          routines={allRoutines}
+          lastWashDate={lastWash?.date ?? null}
+          lastStyleDate={lastStyle?.date ?? null}
+        />
       </main>
       
     </div>
@@ -67,4 +67,4 @@ const Home = async () => {
   )
 }
 
-export default Home
+export default page

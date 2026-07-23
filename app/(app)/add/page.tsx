@@ -1,27 +1,58 @@
-
-import {createClient} from '@/lib/supabase/server'
-import Header from '@/components/ui/Header'
+import { createClient } from '@/lib/supabase/server'
 import AddRoutineForm from '@/components/AddRoutineForm'
 
+const page = async ({
+    searchParams,
+}: {
+    searchParams: Promise<{ edit?: string }>
+}) => {
 
-const page = async () => {
-
-  const supabase = await createClient()
+    const supabase = await createClient()
 
     const {data: routineTypes, error} = await supabase
-      .from("routine_types")
-      .select("id, name")
+        .from("routine_types")
+        .select("id, name")
 
     if (error) {
-      console.log(error);
+        console.log(error);
     }
-    
 
-  return (
-    <div className='max-w-360 mx-auto'>
-      <AddRoutineForm routineTypes={routineTypes ?? []}/> {/*if routinetypes is null or undefined, bring nothing else bring reoutineType*/}
-    </div>
-  )
+    const { edit } = await searchParams
+    let initialData = null
+
+    if (edit) {
+        const { data: routine, error: routineError } = await supabase
+            .from('routines')
+            .select(`
+                id,
+                date,
+                notes,
+                products,
+                routine_routine_types ( routine_type_id )
+            `)
+            .eq('id', edit)
+            .single()
+
+        if (routineError) {
+            console.log(routineError)
+        } else if (routine) {
+            initialData = {
+                id: routine.id,
+                date: routine.date,
+                notes: routine.notes,
+                products: routine.products ?? [],
+                routineTypeIds: routine.routine_routine_types.map(
+                    (rrt: { routine_type_id: number }) => rrt.routine_type_id
+                ),
+            }
+        }
+    }
+
+    return (
+        <div className='max-w-360 mx-auto'>
+            <AddRoutineForm routineTypes={routineTypes ?? []} initialData={initialData} />
+        </div>
+    )
 }
 
 export default page

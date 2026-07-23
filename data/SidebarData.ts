@@ -11,7 +11,7 @@ export const sidebarData: SidebarItemProps[] = [
     icon: BiHomeAlt,
     title: "Home",
     header: "",
-    path: "/",
+    path: "/dashboard",
   },
   {
     icon: PiPlusBold,

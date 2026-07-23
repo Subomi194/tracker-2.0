@@ -1,4 +1,4 @@
-import Hero from "./Hero";
+import Hero from "./Home";
 import CustomButton from "./ui/CustomButton";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";

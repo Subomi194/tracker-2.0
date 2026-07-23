@@ -105,7 +105,7 @@ export async function signIn(formData: FormData) {
     return { error: 'UNKNOWN_ERROR' }
   }
 
-  revalidatePath('/', 'layout')
+  revalidatePath('/dashboard', 'layout')
   return { success: 'Signed in successfully.' }
 
 }
@@ -133,8 +133,8 @@ export async function signOut() {
 
   if (error) throw error
 
-  revalidatePath('/', 'layout')
-  redirect('/login')
+  // revalidatePath('/', 'layout')
+  redirect('/')
 }
 
 export async function forgotPassword(formData: FormData) {

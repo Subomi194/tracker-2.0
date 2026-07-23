@@ -1,6 +1,6 @@
 import React from 'react'
 import {createClient} from '@/lib/supabase/server'
-import Hero from '@/components/Hero'
+import Home from '@/components/Home'
 import { UserProps } from '@/types/user'
 
 export const dynamic = 'force-dynamic'

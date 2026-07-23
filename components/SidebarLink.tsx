@@ -7,9 +7,9 @@ import { usePathname } from 'next/navigation'
 import { useSidebar } from '@/context/SidebarContext'
 
 const SidebarLink = ({title, header, path, icon: Icon, expanded}: SidebarItemProps) => {
-    const pathname = usePathname();
-    const isActive = pathname === path;
-    const { toggle } = useSidebar();
+  const pathname = usePathname();
+  const isActive = pathname === path;
+  const { toggle } = useSidebar();
 
   return (
     <Link
@@ -19,8 +19,8 @@ const SidebarLink = ({title, header, path, icon: Icon, expanded}: SidebarItemPro
           toggle()
         }
       }}
-      className={`px-4 py-2 rounded-xl flex items-center gap-3 transition hover:text-white hover:bg-rose-400/50
-        ${isActive ? "bg-rose-400 text-white" : "text-black"}
+      className={`px-4 py-2 rounded-xl flex items-center gap-3 transition hover:text-cream hover:bg-rose-mid
+${isActive ? "bg-pink-accent text-cream" : "text-ink-muted"}
       `}
     >
       <Icon size={expanded ? 20 : 26}  />

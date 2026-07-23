@@ -7,7 +7,7 @@ import Logout from '@/components/Logout'
 type NavbarUserProps = {
   name?: string | null
   email?: string | null
-  expanded: boolean
+  expanded?: boolean
 }
 
 const NavbarUser = ({ name, email, expanded }: NavbarUserProps) => {

@@ -1,37 +1,34 @@
 "use client"
 
 import React from 'react'
-import Image from 'next/image'
-import { CustomButtonProps } from '../../types'
-import Link from 'next/link'
+import { useFormStatus } from 'react-dom'
+import { LuLoader } from "react-icons/lu"
 
-const CustomButton = ({title, href, containerStyles, onClick, btnType}: CustomButtonProps ) => {
+type CustomButtonProps = {
+  title: string
+  loadingTitle?: string
+  containerStyles?: string
+}
 
-    if (href) {
-        return (
-            <Link href={href}
-                className={`text-cream font-medium rounded-lg border border-rose-deep py-2 px-4 w-full
-                hover:bg-rose-mid hover:border-rose-mid
-                transition duration-300 ease-in-out cursor-pointer bg-rose-deep ${containerStyles}`}
-            >
-                {title}
-            </Link>
-        )
-    }
-    return (
-        <button
-            disabled={false}
-            type={btnType || "button"}
-            className={`text-cream font-medium rounded-lg border border-rose-deep py-2 w-full
-            hover:bg-rose-mid hover:border-rose-mid
-            transition duration-300 ease-in-out cursor-pointer bg-rose-deep ${containerStyles}`}
-            onClick={onClick}
-        >
-            <span className="flex-1">
-                {title}
-            </span>
-        </button>
-    )
+const CustomButton = ({ title, loadingTitle, containerStyles }: CustomButtonProps) => {
+  const { pending } = useFormStatus()
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      aria-busy={pending}
+      className={`text-cream font-medium rounded-lg border border-rose-deep py-2 w-full
+        hover:bg-rose-mid hover:border-rose-mid
+        transition duration-300 ease-in-out cursor-pointer bg-rose-deep
+        disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-rose-deep
+        flex items-center justify-center gap-2
+        ${containerStyles}`}
+    >
+      {pending && <LuLoader className="w-4 h-4 animate-spin" />}
+      <span>{pending ? (loadingTitle ?? `${title}...`) : title}</span>
+    </button>
+  )
 }
 
 export default CustomButton

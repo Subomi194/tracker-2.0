@@ -13,7 +13,7 @@ import {
 
 export default function Hero () {
     return (
-    <section className="min-h-screen bg-[#fdf8f3] flex items-center pt-16 font-['DM_Sans']">
+    <section className="min-h-screen bg-cream flex items-center pt-16 font-['DM_Sans']">
       <div className="max-w-6xl mx-auto w-full px-6 py-16 grid md:grid-cols-[55%_45%] gap-10 items-center">
         {/* Copy */}
         <div>
@@ -31,7 +31,7 @@ export default function Hero () {
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <Link
               href="/register"
-              className="bg-rose-deep text-[#fdf8f3] px-8 py-4 rounded-full font-semibold text-base hover:bg-[#3d2b6e] transition-all hover:shadow-xl hover:shadow-[#2d1b4e]/20 hover:-translate-y-0.5"
+              className="bg-rose-deep text-cream px-8 py-4 rounded-full font-semibold text-base hover:bg-[#3d2b6e] transition-all hover:shadow-xl hover:shadow-[#2d1b4e]/20 hover:-translate-y-0.5"
             >
               Start tracking
             </Link>
@@ -72,7 +72,7 @@ export default function Hero () {
             </div>
           </div>
           {/* Floating stat: last wash */}
-          <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl shadow-[#5C1E33]/10 p-4 flex items-center gap-3">
+          <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl shadow-rose-deep/10 p-4 flex items-center gap-3">
             <div className="w-10 h-10 bg-rose-deep/8 rounded-xl flex items-center justify-center shrink-0">
               <Droplets className="w-5 h-5 text-rose-deep" />
             </div>

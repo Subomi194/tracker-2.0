@@ -20,15 +20,19 @@ const RoutineHistory = ({routines}: {routines: RoutineComponent[]}) => {
     const handleDelete = async (id: number) => {
         // Optimistic UI: remove immediately, then call the server action
         setItems(prev => prev.filter(r => r.id !== id))
-        // await deleteRoutine(id)
+        await deleteRoutine(id)
     }
 
     const filtered = items.filter((r) => {
         if (!searchQuery) return true
         const q = searchQuery.toLowerCase()
+        const products = r.routine_products.map((rp) => rp.products)
         return (
             r.notes?.toLowerCase().includes(q) ||
-            r.products.some((p) => p.toLowerCase().includes(q)) ||
+            products.some((p) => 
+                p.product_name.toLowerCase().includes(q) ||
+                p.brand?.toLowerCase().includes(q) 
+            )||
             r.routine_routine_types.some((rrt) =>
                 rrt.routine_types.name.toLowerCase().includes(q)
             )

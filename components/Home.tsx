@@ -101,7 +101,9 @@ const Home = ({ name, routines = [], lastWashDate, lastStyleDate }: HomeProps) =
             <Link href="/history" className="text-sm text-pink-accent hover:text-pink-accent-hover hover:underline">See all</Link>
           </div>
 
-          {recentRoutines.map((routine) => (
+          {recentRoutines.map((routine) => {
+            const products = routine.routine_products.map((rp) => rp.products)
+            return(
             <div key={routine.id} className="rounded-4xl border border-blush-border p-2">
               <div className="rounded-[1.75rem] bg-cream shadow-sm p-4 space-y-2">
 
@@ -125,11 +127,11 @@ const Home = ({ name, routines = [], lastWashDate, lastStyleDate }: HomeProps) =
                   <p className="text-sm font-semibold text-ink">{routine.notes}</p>
                 )}
 
-                {routine.products.length > 0 && (
+                {products.length > 0 && (
                   <div className="flex flex-wrap gap-2">
-                    {routine.products.map((product, i) => (
-                      <span key={i} className="text-xs bg-cream text-ink-muted px-2.5 py-0.5 rounded-full border border-blush-border">
-                        {product}
+                    {products.map((product) => (
+                      <span key={product.id} className="text-xs bg-cream text-ink-muted px-2.5 py-0.5 rounded-full border border-blush-border">
+                        {product.brand ? `${product.brand} ${product.product_name}` : product.product_name}
                       </span>
                     ))}
                   </div>
@@ -137,7 +139,8 @@ const Home = ({ name, routines = [], lastWashDate, lastStyleDate }: HomeProps) =
 
               </div>
             </div>
-          ))}
+            )
+          })}
 
           <Link
             href="/add"

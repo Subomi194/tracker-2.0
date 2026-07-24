@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/lib/supabase/server'
+import { findOrCreateProduct } from '../products/actions'
 
 export async function addRoutine(formData: FormData) {
 
@@ -16,7 +17,7 @@ export async function addRoutine(formData: FormData) {
         formData.get('routine_type_ids') as string
     )
     const rawProducts = formData.get('products')
-    const products: string[] = rawProducts
+    const productNames: string[] = rawProducts
         ? JSON.parse(rawProducts as string)
         : []
 
@@ -32,8 +33,7 @@ export async function addRoutine(formData: FormData) {
             {
                 user_id: user.id,
                 date,
-                notes,
-                products
+                notes
             }
         )
         .select()
@@ -55,6 +55,25 @@ export async function addRoutine(formData: FormData) {
         throw joinTypeError
     }
 
+    if (productNames.length > 0) {
+    // Quick-add from this form only ever gives us a name — brand and
+    // category are left blank/'other' here and can be completed later
+    // from the Product Library. See findOrCreateProduct below.
+        const productIds = await Promise.all(
+            productNames.map((name) => findOrCreateProduct(name))
+        )
+        const productRows = productIds.map((productId) => ({
+            routine_id: routine.id,
+            product_id: productId,
+        }))
+
+        const { error: productJoinError } = await supabase
+            .from('routine_products')
+            .insert(productRows)
+
+        if (productJoinError) throw productJoinError
+    }
+
     revalidatePath('/', 'layout')
     redirect('/')
 }
@@ -69,7 +88,7 @@ export async function updateRoutine(routineId: number, formData: FormData) {
         formData.get('routine_type_ids') as string
     )
     const rawProducts = formData.get('products')
-    const products: string[] = rawProducts
+    const productNames: string[] = rawProducts
         ? JSON.parse(rawProducts as string)
         : []
 
@@ -81,7 +100,7 @@ export async function updateRoutine(routineId: number, formData: FormData) {
 
     const { error: updateError } = await supabase
         .from('routines')
-        .update({ date, notes, products })
+        .update({ date, notes })
         .eq('id', routineId)
         .eq('user_id', user.id)
 
@@ -123,6 +142,39 @@ export async function updateRoutine(routineId: number, formData: FormData) {
         }
     }
 
+    // --- products sync ---
+    const productIds = await Promise.all(
+        productNames.map((name) => findOrCreateProduct(name))
+    )
+
+    if (productIds.length > 0) {
+        const { error: deleteProductsError } = await supabase
+            .from('routine_products')
+            .delete()
+            .eq('routine_id', routineId)
+            .not('product_id', 'in', `(${productIds.join(',')})`)
+
+        if (deleteProductsError) throw deleteProductsError
+
+        const productRows = productIds.map((productId) => ({
+            routine_id: routineId,
+            product_id: productId,
+        }))
+
+        const { error: productJoinError } = await supabase
+            .from('routine_products')
+            .upsert(productRows, { onConflict: 'routine_id,product_id', ignoreDuplicates: true })
+
+        if (productJoinError) throw productJoinError
+    } else {
+        const { error: deleteAllProductsError } = await supabase
+            .from('routine_products')
+            .delete()
+            .eq('routine_id', routineId)
+
+        if (deleteAllProductsError) throw deleteAllProductsError
+    }
+
     revalidatePath('/', 'layout')
     redirect('/history')
 }
@@ -145,4 +197,10 @@ export async function deleteRoutine(routineId: number) {
     const { error } = await supabase
         .from('routines')
         .delete()
+        .eq('id', routineId)
+        .eq('user_id', user.id)
+
+    if (error) throw error
+
+    revalidatePath('/', 'layout')
 }

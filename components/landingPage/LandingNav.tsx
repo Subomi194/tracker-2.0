@@ -33,11 +33,11 @@ export default function LandingNav() {
   ];
 
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 font-['DM_Sans'] ${scrolled ? 'bg-[#fdf8f3]/95 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 font-['DM_Sans'] ${scrolled ? 'bg-cream/95 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2.5 cursor-default">
           <div className="w-8 h-8 rounded-full bg-rose-deep flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-[#fdf8f3]" />
+            <Sparkles className="w-4 h-4 text-cream" />
           </div>
           <span className="font-['Playfair_Display'] font-bold text-rose-deep text-base tracking-tight">Hair Routine Tracker</span>
         </div>
@@ -66,7 +66,7 @@ export default function LandingNav() {
 
           <Link
             href="/register"
-            className="bg-rose-deep text-[#fdf8f3] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#3d2b6e]"
+            className="bg-rose-deep text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#3d2b6e]"
           >
             Get started
           </Link>
@@ -87,7 +87,7 @@ export default function LandingNav() {
       
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-[#fdf8f3] border-t border-rose-deep/10 px-6 py-4 flex flex-col gap-3">
+        <div className="md:hidden bg-cream border-t border-rose-deep/10 px-6 py-4 flex flex-col gap-3">
           {navLinks.map((link) => {
             const isActive = pathname === link.path;
 

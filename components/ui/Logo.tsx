@@ -47,7 +47,7 @@ export function SidebarLogo ({expanded}: LogoProps) {
           hover:rotate-3
           active:scale-95
           ${expanded 
-            ? "w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 transform scale-100 ring-4 ring-[#E8536E]" : "w-14 h-14 -scale-x-100"}
+            ? "w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 transform scale-100 ring-4 ring-pink-accent" : "w-14 h-14 -scale-x-100"}
           hover:scale-110
           `} />
 

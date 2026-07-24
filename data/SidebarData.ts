@@ -2,7 +2,7 @@ import { SidebarItemProps } from "@/types/navigation";
 import { BiHomeAlt } from "react-icons/bi";
 import { PiPlusBold } from "react-icons/pi";
 import { LuHistory } from "react-icons/lu";
-//import { BsBoxSeam } from "react-icons/bs";
+import { BsBoxSeam } from "react-icons/bs";
 import { LuSettings } from "react-icons/lu";
 
 
@@ -25,11 +25,12 @@ export const sidebarData: SidebarItemProps[] = [
     header: "Routine History",
     path: "/history",
   },
-  //{
-    //icon: BsBoxSeam,
-    //title: "Products",
-    //path: "/products",
-  //},
+  {
+    icon: BsBoxSeam,
+    title: "Products",
+    header: "Product Library",
+    path: "/products",
+  },
   {
     icon: LuSettings,
     title: "Settings",

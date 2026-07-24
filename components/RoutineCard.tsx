@@ -19,6 +19,8 @@ const RoutineCard = ({ routine, onDelete }: RoutineCardProps) => {
   const startX = useRef<number | null>(null)
   const dragging = useRef(false)
 
+  const products = routine.routine_products.map((rp) => rp.products)
+
   const handleTouchStart = (e: React.TouchEvent) => {
     startX.current = e.touches[0].clientX
     dragging.current = true
@@ -38,7 +40,7 @@ const RoutineCard = ({ routine, onDelete }: RoutineCardProps) => {
   const closeSwipe = () => setSwipeX(0)
 
   return (
-    <div className="relative rounded-[1.75rem] mb-4 overflow-hidden">
+    <div className="relative bg-blush-light rounded-4xl p-2 mb-4 overflow-hidden">
 
       {/* Buttons revealed underneath on mobile swipe */}
       <div className="absolute inset-y-0 left-0 flex items-center gap-2 pl-3 bg-blush-light md:hidden">
@@ -58,7 +60,7 @@ const RoutineCard = ({ routine, onDelete }: RoutineCardProps) => {
       </div>
 
       <div
-        className="relative bg-blush-light rounded-4xl p-2 group"
+        className="relative bg-white border border-blush-border rounded-[1.75rem] p-2 group"
         style={
           swipeX !== 0
             ? { transform: `translateX(${swipeX}px)`, transition: dragging.current ? 'none' : 'transform 0.2s ease-out' }
@@ -68,7 +70,7 @@ const RoutineCard = ({ routine, onDelete }: RoutineCardProps) => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div className="bg-white border border-blush-border rounded-[1.75rem] p-2">
+        
         <div className="rounded-3xl p-3 pb-4 space-y-2">
 
           <div className="flex justify-between items-start gap-2">
@@ -97,10 +99,10 @@ const RoutineCard = ({ routine, onDelete }: RoutineCardProps) => {
 
           <div className="flex justify-between items-end gap-2">
             <div className="flex flex-wrap gap-2">
-              {routine.products.length > 0 ? (
-                routine.products.map((product, index) => (
-                  <span key={index} className="text-xs border border-blush-border bg-cream text-ink-muted font-medium px-2.5 py-0.5 rounded-full">
-                    {product}
+              {products.length > 0 ? (
+                products.map((product) => (
+                  <span key={product.id} className="text-xs border border-blush-border bg-cream text-ink-muted font-medium px-2.5 py-0.5 rounded-full">
+                    {product.brand ? `${product.brand} ${product.product_name}` : product.product_name}
                   </span>
                 ))
               ) : (
@@ -124,7 +126,7 @@ const RoutineCard = ({ routine, onDelete }: RoutineCardProps) => {
               </button>
             </div>
           </div>
-        </div>
+        
         </div>
       </div>
     </div>

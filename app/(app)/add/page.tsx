@@ -27,8 +27,9 @@ const page = async ({
                 id,
                 date,
                 notes,
-                products,
-                routine_routine_types ( routine_type_id )
+                routine_routine_types ( routine_type_id ),
+                routine_products ( products ( product_name ) )
+
             `)
             .eq('id', edit)
             .single()
@@ -40,7 +41,7 @@ const page = async ({
                 id: routine.id,
                 date: routine.date,
                 notes: routine.notes,
-                products: routine.products ?? [],
+                products: routine.routine_products.map((rp: any) => rp.products.product_name),
                 routineTypeIds: routine.routine_routine_types.map(
                     (rrt: { routine_type_id: number }) => rrt.routine_type_id
                 ),

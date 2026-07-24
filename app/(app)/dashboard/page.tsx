@@ -3,7 +3,6 @@ import { createClient } from '@/lib/supabase/server'
 import { RoutineComponent } from '@/types/routine'
 import Home from '@/components/Home'
 import readProfile from '@/app/(onboarding)/profile/readProfile'
-import { signUp } from "@/app/auth/actions"
 
 
 const page = async () => {
@@ -18,12 +17,11 @@ const page = async () => {
       id,
       date,
       notes,
-      products,
       routine_routine_types (
-        routine_types (
-          id,
-          name
-        )
+        routine_types ( id, name )
+      ),
+      routine_products (
+        products ( id, brand, product_name, category )
       )
     `)
     .order("date", { ascending: false })

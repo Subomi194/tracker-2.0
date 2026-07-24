@@ -22,7 +22,7 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <section className="bg-[#fdf8f3] py-24 px-6 font-['DM_Sans']">
+    <section className="bg-cream py-24 px-6 font-['DM_Sans']">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-pink-accent text-xs font-bold uppercase tracking-widest mb-4">What Hair Routine Tracker does</p>

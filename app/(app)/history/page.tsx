@@ -20,10 +20,10 @@ const page = async () => {
         notes,
         products,
         routine_routine_types (
-          routine_types (
-            id,
-            name
-          )
+          routine_types (id, name)
+        ),
+        routine_products (
+          products (id, brand, product_name, category)
         )
       `)
       .order("date", {ascending: false})

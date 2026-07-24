@@ -39,6 +39,7 @@ const AddRoutineForm = ({routineTypes, initialData}: {routineTypes: RoutineType[
             setResetKey(prev => prev + 1)
         }
     }
+    
 
     const handleTypeChange = (id: number, checked: boolean) => {
         setSelectedTypes((prev) => {
@@ -120,7 +121,7 @@ const AddRoutineForm = ({routineTypes, initialData}: {routineTypes: RoutineType[
                   customStyles=''
                 />
 
-                <CustomButton title={isEditing ? 'Update Routine' : 'Add Routine'} btnType="submit" containerStyles='mt-2'/>
+                <CustomButton title={isEditing ? 'Update Routine' : 'Add Routine'} containerStyles='mt-2'/>
                 </div>
               </div>
             </div>

@@ -110,7 +110,7 @@ const AddRoutineForm = ({routineTypes, initialData}: {routineTypes: RoutineType[
                   customStyles='focus:border-pink-accent focus:ring-blush-light'
                 />
 
-                <AddProducts key={resetKey} initialProducts={initialData?.products}/>
+                <AddProducts key={resetKey} initialProducts={initialData?.products} routineTypeIds={selectedTypes}/>
 
                 <AddTextarea
                   label='Notes'

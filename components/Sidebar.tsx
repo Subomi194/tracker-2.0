@@ -30,7 +30,7 @@ const Sidebar = ({ name, email }: SidebarProps) => {
         <nav className={`bg-blush-light text-ink border-r-3 border-pink-accent shadow-lg h-full 
             flex flex-col
             overflow-y-auto transition-all duration-300
-${expanded ? 'md:w-64 w-44 px-2 translate-x-0' : 'md:w-16 w-0 md:p-2 -translate-x-full md:translate-x-0'}
+${expanded ? 'md:w-64 w-44 px-2 translate-x-0' : 'md:w-16 w-0 md:p-2 -translate-x-full md:translate-x-0 '}
             `}>
 
           <div className="flex items-center justify-between shrink-0 pt-2">

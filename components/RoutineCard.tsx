@@ -1,43 +1,36 @@
 "use client"
 
 import { useState, useRef } from 'react'
+import { motion, PanInfo } from "motion/react"
 import Link from 'next/link'
 import { RoutineComponent } from '@/types/routine'
 import { shortFormatDate } from '@/lib/utils/formatDate'
 import { LuPencil, LuTrash2 } from "react-icons/lu"
+import { useIsMobile } from '@/lib/hooks/useIsMobile'
 
 type RoutineCardProps = {
   routine: RoutineComponent
   onDelete: (id: number) => void
 }
 
-const SWIPE_THRESHOLD = 70
 const MAX_SWIPE = 140
+const DISTANCE_THRESHOLD = MAX_SWIPE / 2
+const VELOCITY_THRESHOLD = 500 // px/sec — a quick flick opens it even under the distance threshold
+
 
 const RoutineCard = ({ routine, onDelete }: RoutineCardProps) => {
-  const [swipeX, setSwipeX] = useState(0)
-  const startX = useRef<number | null>(null)
-  const dragging = useRef(false)
-
+  const [open, setOpen] = useState(false)
+  const isMobile = useIsMobile()
   const products = routine.routine_products.map((rp) => rp.products)
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    startX.current = e.touches[0].clientX
-    dragging.current = true
+  const handleDragEnd = (_: PointerEvent, info: PanInfo) => {
+    const shouldOpen =
+      info.offset.x > DISTANCE_THRESHOLD || info.velocity.x > VELOCITY_THRESHOLD
+    setOpen(shouldOpen)
   }
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!dragging.current || startX.current === null) return
-    const diff = e.touches[0].clientX - startX.current
-    setSwipeX(Math.max(0, Math.min(diff, MAX_SWIPE)))
-  }
+  const closeSwipe = () => setOpen(false)
 
-  const handleTouchEnd = () => {
-    dragging.current = false
-    setSwipeX(swipeX > SWIPE_THRESHOLD ? MAX_SWIPE : 0)
-  }
-
-  const closeSwipe = () => setSwipeX(0)
 
   return (
     <div className="relative bg-blush-light rounded-4xl p-2 mb-4 overflow-hidden">
@@ -59,18 +52,16 @@ const RoutineCard = ({ routine, onDelete }: RoutineCardProps) => {
         </button>
       </div>
 
-      <div
-        className="relative bg-white border border-blush-border rounded-[1.75rem] p-2 group"
-        style={
-          swipeX !== 0
-            ? { transform: `translateX(${swipeX}px)`, transition: dragging.current ? 'none' : 'transform 0.2s ease-out' }
-            : undefined
-        }
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+      <motion.div className="relative bg-white border border-blush-border rounded-[1.75rem] p-2 group"
+        drag={isMobile ? "x" : false}
+        dragConstraints={{ left: 0, right: MAX_SWIPE }}
+        dragElastic={0.15}
+        dragMomentum={false}
+        animate={{ x: open ? MAX_SWIPE : 0 }}
+        transition={{ type: "spring", stiffness: 500, damping: 40 }}
+        onDragEnd={handleDragEnd}
       >
-        
+
         <div className="rounded-3xl p-3 pb-4 space-y-2">
 
           <div className="flex justify-between items-start gap-2">
@@ -126,9 +117,8 @@ const RoutineCard = ({ routine, onDelete }: RoutineCardProps) => {
               </button>
             </div>
           </div>
-        
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }

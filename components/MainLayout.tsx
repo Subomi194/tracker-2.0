@@ -19,12 +19,12 @@ const MainLayout = ({ children, onSearch }: MainLayoutProps) => {
   return (
     <div
       className={`
-        flex flex-col flex-1 transition-all duration-300 sm:overflow-hidden
+        flex flex-col flex-1 transition-all duration-300
         ${expanded ? "md:ml-64" : "md:ml-16"}
       `}
     >
       {!isHome && <Navbar onSearch={onSearch} />}
-      <main className={` flex-1 px-6 py-8 overflow-y-auto ${!isHome ? "pt-20" : "pt-6"}`}>
+      <main className={` flex-1 min-w-0 px-6 py-8 overflow-y-auto ${!isHome ? "pt-20" : "pt-6"}`}>
         <div className="max-w-6xl mx-auto">{children}</div>
       </main>
     </div>

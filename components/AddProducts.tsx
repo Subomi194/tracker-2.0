@@ -1,11 +1,46 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AddInputs from './ui/AddInputs'
+import { LuSparkles } from 'react-icons/lu'
+import {getSuggestedProducts} from '@/app/(app)/products/actions'
 
-const AddProducts = ({ initialProducts = [] }: { initialProducts?: string[] }) => {
+type Suggestion = {
+    id: string
+    brand: string | null
+    product_name: string
+    category: string
+    usageCount: number
+}
+
+type AddProductsProps = {
+    initialProducts?: string[]
+    routineTypeIds?: number[]
+}
+
+const AddProducts = ({ initialProducts = [], routineTypeIds = [] }: AddProductsProps) => {
     const [input, setInput] = useState("")
     const [products, setProducts] = useState<string[]>(initialProducts)
+    const [suggestions, setSuggestions] = useState<Suggestion[]>([])
+
+    useEffect(() => {
+        let active = true
+
+        if (routineTypeIds.length === 0) {
+            setSuggestions([])
+            return
+        }
+
+        getSuggestedProducts(routineTypeIds).then((results) => {
+            if (active) setSuggestions(results)
+        })
+
+        return () => { active = false }
+        // routineTypeIds.join(',') keeps this stable across renders —
+        // a new array reference every render would otherwise refetch constantly
+    }, [routineTypeIds.join(',')])
+
+    const formatName = (s: Suggestion) => s.brand ? `${s.brand} ${s.product_name}` : s.product_name
 
     const handleAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
@@ -14,6 +49,12 @@ const AddProducts = ({ initialProducts = [] }: { initialProducts?: string[] }) =
 
         setProducts(prev => [...prev, input.trim()])
         setInput("")
+    }
+
+    const handleAddSuggestion = (suggestion: Suggestion) => {
+        const name = formatName(suggestion)
+        if (products.some(p => p.toLowerCase() === name.toLowerCase())) return
+        setProducts(prev => [...prev, name])
     }
 
     return (
@@ -33,6 +74,35 @@ const AddProducts = ({ initialProducts = [] }: { initialProducts?: string[] }) =
                     </button>
                 </div>
             </div>
+
+            {suggestions.length > 0 && (
+                <div className='mt-2 space-y-1.5'>
+                    <p className='text-xs text-ink-muted flex items-center gap-1'>
+                        <LuSparkles size={12} className='text-pink-accent' /> Frequently used for this routine
+                    </p>
+                    <div className='flex flex-wrap gap-2'>
+                        {suggestions.map((s) => {
+                            const name = formatName(s)
+                            const alreadyAdded = products.some(p => p.toLowerCase() === name.toLowerCase())
+                            return (
+                                <button
+                                    key={s.id}
+                                    type='button'
+                                    disabled={alreadyAdded}
+                                    onClick={() => handleAddSuggestion(s)}
+                                    className={`text-sm rounded-full px-3 py-1 border transition ${
+                                        alreadyAdded
+                                            ? 'bg-blush-light/40 border-blush-border text-ink-muted/50 cursor-not-allowed'
+                                            : 'bg-blush-light border-blush-border text-rose-deep hover:bg-pink-accent hover:text-cream hover:border-pink-accent'
+                                    }`}
+                                >
+                                    {name}
+                                </button>
+                            )
+                        })}
+                    </div>
+                </div>
+            )}
 
             <input
                 type="hidden"
